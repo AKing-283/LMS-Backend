@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Lectures</title>
+</head>
+<body>
+    <h1>Lectures</h1>
+    <ul>
+        {% for lecture in lectures %}
+            <li>
+                <h2>{{ lecture.title }}</h2>
+                <p>{{ lecture.description }}</p>
+                {% if lecture.video_file %}
+                    <video width="320" height="240" controls>
+                        <source src="{{ lecture.video_file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% elif lecture.embed_url %}
+                    <iframe width="320" height="240" src="{{ lecture.embed_url }}" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
